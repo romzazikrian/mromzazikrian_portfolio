@@ -369,7 +369,13 @@ export default function About() {
               ABOUT CONTENT
           ========================== */}
 
-          <motion.div variants={container} className="space-y-8">
+          <motion.div
+            key={language}
+            initial="hidden"
+            animate="visible"
+            variants={container}
+            className="space-y-8"
+          >
             {/* Paragraphs */}
 
             <motion.div
@@ -377,7 +383,10 @@ export default function About() {
               className="space-y-5 text-base leading-8 text-slate-600 dark:text-slate-400"
             >
               {content.paragraphs.map((paragraph, index) => (
-                <motion.p key={index} variants={fadeUp}>
+                <motion.p
+                  key={`${language}-paragraph-${index}`}
+                  variants={fadeUp}
+                >
                   {paragraph}
                 </motion.p>
               ))}
@@ -388,12 +397,15 @@ export default function About() {
             ========================== */}
 
             <motion.div
+              key={`highlights-${language}`}
+              initial="hidden"
+              animate="visible"
               variants={container}
               className="grid gap-3 sm:grid-cols-2"
             >
               {highlights.map((highlight) => (
                 <motion.div
-                  key={highlight}
+                  key={`${language}-${highlight}`}
                   variants={highlightItem}
                   whileHover={{
                     y: -5,
@@ -421,6 +433,9 @@ export default function About() {
             ========================== */}
 
             <motion.div
+              key={`info-${language}`}
+              initial="hidden"
+              animate="visible"
               variants={fadeUp}
               whileHover={{
                 y: -3,
@@ -447,7 +462,7 @@ export default function About() {
               >
                 {content.info.map((item) => (
                   <motion.div
-                    key={item.label}
+                    key={`${language}-${item.label}`}
                     variants={highlightItem}
                     whileHover={{ x: 3 }}
                   >
